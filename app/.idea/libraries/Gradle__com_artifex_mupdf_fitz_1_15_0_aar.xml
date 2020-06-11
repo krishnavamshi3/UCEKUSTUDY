@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: com.artifex.mupdf:fitz:1.15.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e251b8a9e7098cd4c30c8474937e4acf/jetified-fitz-1.15.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e251b8a9e7098cd4c30c8474937e4acf/jetified-fitz-1.15.0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: com.artifex.mupdf:viewer:1.15.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a614d95c7e9dce1bdf5c59803585f5cc/jetified-viewer-1.15.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a614d95c7e9dce1bdf5c59803585f5cc/jetified-viewer-1.15.1/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

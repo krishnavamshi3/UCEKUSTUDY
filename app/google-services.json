@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "355992763780",
+    "firebase_url": "https://ucekustudy-969c8.firebaseio.com",
+    "project_id": "ucekustudy-969c8",
+    "storage_bucket": "ucekustudy-969c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:355992763780:android:b333ca7961029c9ca7b1d1",
+        "android_client_info": {
+          "package_name": "com.uceku.ucekustudy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "355992763780-nr9hjsu2q2lckcqkj641mini42r1utij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuBGI20x8erFQalSfFigdQ_aTL9iJwoZo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "355992763780-nr9hjsu2q2lckcqkj641mini42r1utij.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

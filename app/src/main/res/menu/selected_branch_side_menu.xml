@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_saved"
+            android:icon="@drawable/ic_folder_special_black_24dp"
+            android:title="@string/saved" />
+    </group>
+
+    <group
+        android:id="@+id/semGroup"
+        android:checkableBehavior="single">
+
+        <item
+            android:icon="@drawable/ic_content_paste_black_24dp"
+            android:title="@string/semester">
+            <menu>
+                <item
+                    android:id="@+id/nav_sem1"
+                    android:icon="@drawable/ic_import_contacts_black_24dp"
+                    android:title="@string/sem1" />
+                <item
+                    android:id="@+id/nav_sem2"
+                    android:icon="@drawable/ic_import_contacts_black_24dp"
+                    android:title="@string/sem2" />
+                <item
+                    android:id="@+id/nav_sem3"
+                    android:icon="@drawable/ic_import_contacts_black_24dp"
+                    android:title="@string/sem3" />
+                <item
+                    android:id="@+id/nav_sem4"
+                    android:icon="@drawable/ic_import_contacts_black_24dp"
+                    android:title="@string/sem4" />
+                <item
+                    android:id="@+id/nav_sem5"
+                    android:icon="@drawable/ic_import_contacts_black_24dp"
+                    android:title="@string/sem5" />
+                <item
+                    android:id="@+id/nav_sem6"
+                    android:icon="@drawable/ic_import_contacts_black_24dp"
+                    android:title="@string/sem6" />
+                <item
+                    android:id="@+id/nav_sem7"
+                    android:icon="@drawable/ic_import_contacts_black_24dp"
+                    android:title="@string/sem7" />
+                <item
+                    android:id="@+id/nav_sem8"
+                    android:icon="@drawable/ic_import_contacts_black_24dp"
+                    android:title="@string/sem8" />
+            </menu>
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/group3"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_change_branch"
+            android:icon="@drawable/ic_track_changes_black_24dp"
+            android:title="@string/change_branch" />
+
+    </group>
+
+    <group
+        android:id="@+id/group4"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_contact_us"
+            android:icon="@drawable/ic_email_black_24dp"
+            android:title="@string/contact" />
+
+        <item
+            android:id="@+id/nav_privacy_policy"
+            android:icon="@drawable/ic_verified_user_blue_24dp"
+            android:title="@string/privacy_policy" />
+
+    </group>
+
+</menu>
