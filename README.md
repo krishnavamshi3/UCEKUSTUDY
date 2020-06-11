@@ -1,2 +1,2 @@
-# UCEKUSTUDY
-Study app for semester notes and other useful resources for students.
+# UCEKU STUDY - MOBILE LEARNING APPLICATION FOR ANDROID.
+Study app for useful resources for students.
