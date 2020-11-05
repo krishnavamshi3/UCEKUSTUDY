@@ -1,6 +1,7 @@
 package com.uceku.ucekustudy.my_course_content;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,8 +32,10 @@ import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 import com.github.barteksc.pdfviewer.listener.OnPageErrorListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.novoda.merlin.Bindable;
 import com.novoda.merlin.Connectable;
@@ -87,6 +91,8 @@ public class MyCourseContentActivity extends AppCompatActivity implements Connec
     boolean showRefreshAction = false;
 
     FirebaseStorage storage;
+    double progress = 0.0;
+    ProgressDialog progressDialog;
 
 
     @Override
@@ -99,7 +105,7 @@ public class MyCourseContentActivity extends AppCompatActivity implements Connec
         errorLoadingRootView = findViewById(R.id.doc_error_root);
         docErrorIV = findViewById(R.id.doc_error_iv);
         docErrorTV = findViewById(R.id.doc_error_tv);
-
+progressDialog = new ProgressDialog(this);
         // get Intent
         Intent intent = getIntent();
         if (intent != null) {
@@ -240,8 +246,8 @@ public class MyCourseContentActivity extends AppCompatActivity implements Connec
             @Override
             public boolean handleMessage(@NonNull Message msg) {
                 if (msg.arg1 == 0) {
-                    Toast.makeText(MyCourseContentActivity.this, "File saved successfully", Toast.LENGTH_SHORT).show();
                     updateSaveContentInDB(_fileName);
+                    Toast.makeText(MyCourseContentActivity.this, "File saved successfully", Toast.LENGTH_SHORT).show();
                 } else if (msg.arg1 == -1) {
                     Toast.makeText(MyCourseContentActivity.this, "File not saved", Toast.LENGTH_SHORT).show();
                 }
@@ -272,8 +278,8 @@ public class MyCourseContentActivity extends AppCompatActivity implements Connec
                     file = AppFileUtils.getStoredPreviousPapersFile(fileName);
                 } else if (contentTypeOrdinal == CourseContentType.BOOKS.ordinal()) {
                     file = AppFileUtils.getStoredBooksFile(fileName);
-                } else if (contentTypeOrdinal == CourseContentType.BOOKS.ordinal()) {
-                    file = AppFileUtils.getStoredBooksFile(fileName);
+                } else if (contentTypeOrdinal == CourseContentType.SYLLABUS.ordinal()) {
+                    file = AppFileUtils.getStoredSyllabusFile(fileName);
                     mSyllabus.setFileLocalURL(file.getAbsolutePath());
                     realm.insertOrUpdate(mSyllabus);
                 }
@@ -331,6 +337,14 @@ public class MyCourseContentActivity extends AppCompatActivity implements Connec
                 // Handle any errors
                 onDocFileDownload.onFailure();
             }
+        }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                //calculating progress percentage
+                progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                //displaying percentage in progress dialog
+                progressDialog.setMessage("Fetching document " + ((int) progress) + "%...");
+            }
         });
 
     }
@@ -357,6 +371,9 @@ public class MyCourseContentActivity extends AppCompatActivity implements Connec
     }
 
     private void showFileNotPresentInCloud() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
         loadingRootView.setVisibility(View.GONE);
         pdfView.setVisibility(View.GONE);
         errorLoadingRootView.setVisibility(View.VISIBLE);
@@ -366,6 +383,9 @@ public class MyCourseContentActivity extends AppCompatActivity implements Connec
     }
 
     private void showEndPoint() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
         loadingRootView.setVisibility(View.GONE);
         pdfView.setVisibility(View.GONE);
         errorLoadingRootView.setVisibility(View.VISIBLE);
@@ -375,6 +395,9 @@ public class MyCourseContentActivity extends AppCompatActivity implements Connec
     }
 
     private void showErrorLoadingDocument() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
         loadingRootView.setVisibility(View.GONE);
         pdfView.setVisibility(View.GONE);
         errorLoadingRootView.setVisibility(View.VISIBLE);
@@ -385,6 +408,9 @@ public class MyCourseContentActivity extends AppCompatActivity implements Connec
     }
 
     private void showErrorOnNetworkFailure() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
         loadingRootView.setVisibility(View.GONE);
         pdfView.setVisibility(View.GONE);
         errorLoadingRootView.setVisibility(View.VISIBLE);
@@ -394,14 +420,23 @@ public class MyCourseContentActivity extends AppCompatActivity implements Connec
     }
 
     private void showPdfOnUI() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
         errorLoadingRootView.setVisibility(View.GONE);
         loadingRootView.setVisibility(View.GONE);
         pdfView.setVisibility(View.VISIBLE);
     }
 
     private void showFetchingPdf() {
+        if (progressDialog != null) {
+            progressDialog.show();
+        }
         errorLoadingRootView.setVisibility(View.GONE);
-        loadingRootView.setVisibility(View.VISIBLE);
+        loadingRootView.setVisibility(View.GONE);
+        ProgressBar progressBar = loadingRootView.findViewById(R.id.progressBar);
+        progressBar.setProgress((int) progress);
+        Log.i("progress", String.valueOf(progress));
         pdfView.setVisibility(View.GONE);
     }
 

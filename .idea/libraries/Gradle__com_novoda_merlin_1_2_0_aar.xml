@@ -1,8 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.novoda:merlin:1.2.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/350cc21d44f11f026a1a2bdb1e0594fc/jetified-merlin-1.2.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/350cc21d44f11f026a1a2bdb1e0594fc/jetified-merlin-1.2.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3df71686bf13d018dc7598de73b8a7f6/jetified-merlin-1.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3df71686bf13d018dc7598de73b8a7f6/jetified-merlin-1.2.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a303edbb74ba585e4623bba585113f18/jetified-merlin-1.2.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a303edbb74ba585e4623bba585113f18/jetified-merlin-1.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a303edbb74ba585e4623bba585113f18/jetified-merlin-1.2.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.novoda/merlin/1.2.0/390f8c7b38c724507a67659afee7595d50dc84f9/merlin-1.2.0-javadoc.jar!/" />

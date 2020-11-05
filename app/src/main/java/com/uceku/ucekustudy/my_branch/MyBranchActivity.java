@@ -188,8 +188,10 @@ public class MyBranchActivity extends AppCompatActivity implements NavigationVie
         int itemId = item.getItemId();
 
         if (itemId == R.id.nav_sem1 || itemId == R.id.nav_sem2 || itemId == R.id.nav_sem3 ||
-                itemId == R.id.nav_sem4 || itemId == R.id.nav_sem5 || itemId == R.id.nav_sem6 ||
-                itemId == R.id.nav_sem7 || itemId == R.id.nav_sem8) {
+                itemId == R.id.nav_sem4
+                //|| itemId == R.id.nav_sem5 || itemId == R.id.nav_sem6 ||
+                //itemId == R.id.nav_sem7 || itemId == R.id.nav_sem8
+        ) {
             onSelectSemesterFromNav(item.getTitle().toString().toLowerCase());
 
         } else if (itemId == R.id.nav_saved) {

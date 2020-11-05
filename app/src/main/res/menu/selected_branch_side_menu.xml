@@ -35,22 +35,22 @@
                     android:id="@+id/nav_sem4"
                     android:icon="@drawable/ic_import_contacts_black_24dp"
                     android:title="@string/sem4" />
-                <item
-                    android:id="@+id/nav_sem5"
-                    android:icon="@drawable/ic_import_contacts_black_24dp"
-                    android:title="@string/sem5" />
-                <item
-                    android:id="@+id/nav_sem6"
-                    android:icon="@drawable/ic_import_contacts_black_24dp"
-                    android:title="@string/sem6" />
-                <item
-                    android:id="@+id/nav_sem7"
-                    android:icon="@drawable/ic_import_contacts_black_24dp"
-                    android:title="@string/sem7" />
-                <item
-                    android:id="@+id/nav_sem8"
-                    android:icon="@drawable/ic_import_contacts_black_24dp"
-                    android:title="@string/sem8" />
+<!--                <item-->
+<!--                    android:id="@+id/nav_sem5"-->
+<!--                    android:icon="@drawable/ic_import_contacts_black_24dp"-->
+<!--                    android:title="@string/sem5" />-->
+<!--                <item-->
+<!--                    android:id="@+id/nav_sem6"-->
+<!--                    android:icon="@drawable/ic_import_contacts_black_24dp"-->
+<!--                    android:title="@string/sem6" />-->
+<!--                <item-->
+<!--                    android:id="@+id/nav_sem7"-->
+<!--                    android:icon="@drawable/ic_import_contacts_black_24dp"-->
+<!--                    android:title="@string/sem7" />-->
+<!--                <item-->
+<!--                    android:id="@+id/nav_sem8"-->
+<!--                    android:icon="@drawable/ic_import_contacts_black_24dp"-->
+<!--                    android:title="@string/sem8" />-->
             </menu>
         </item>
     </group>

@@ -27,7 +27,8 @@ public class AppFileUtils {
 
     public static boolean isFilePresent(Uri uri) {
         if (uri == null ||uri.getPath() == null) return false;
-        File file = new File(uri.getPath());
+        String path = uri.getPath();
+        File file = new File(path);
         return file.exists();
     }
 
@@ -186,4 +187,7 @@ public class AppFileUtils {
         return path;
     }
 
+    public static File getStoredSyllabusFile(String fileName) {
+        return new File(getFileDirectorySyllabusPath(), fileName);
+    }
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,6 +25,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.novoda.merlin.Bindable;
+import com.novoda.merlin.Connectable;
+import com.novoda.merlin.Disconnectable;
+import com.novoda.merlin.Merlin;
+import com.novoda.merlin.NetworkStatus;
+import com.uceku.ucekustudy.network.NetworkChangeListener;
 import com.uceku.ucekustudy.network.NetworkConfig;
 import com.uceku.ucekustudy.R;
 import com.uceku.ucekustudy.Routes;
@@ -49,7 +56,7 @@ import io.realm.Realm;
  * OnStop of Activity :
  * close all the instances of the resources used. eg : realm, firestore, recyclerview etc...
  */
-public class DepartmentSelectorActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class DepartmentSelectorActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, Connectable, Disconnectable, Bindable {
     private static final String TAG = DepartmentSelectorActivity.class.getSimpleName();
     BranchGridAdapter mGridAdapter;
     GridView mGridView;
@@ -60,6 +67,8 @@ public class DepartmentSelectorActivity extends AppCompatActivity implements Ada
     ImageView infoImageView;
     TextView infoTextView;
 
+    Merlin merlin;
+    private NetworkChangeListener networkChangeListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +91,11 @@ public class DepartmentSelectorActivity extends AppCompatActivity implements Ada
         infoImageView = findViewById(R.id.infoIV);
         infoTextView = findViewById(R.id.infoTV);
 
+        merlin = new Merlin.Builder().withAllCallbacks().build(getBaseContext());
+        merlin.registerConnectable(this);
+        merlin.registerDisconnectable(this);
+        merlin.registerBindable(this);
+        merlin.bind();
 
     }
 
@@ -90,13 +104,17 @@ public class DepartmentSelectorActivity extends AppCompatActivity implements Ada
         super.onStart();
         realm = Realm.getDefaultInstance();
 
-
+        networkChangeListener = new NetworkChangeListener();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        this.registerReceiver(networkChangeListener, filter);
         loadDepartments(false);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        this.unregisterReceiver(networkChangeListener);
         if (realm != null && !realm.isClosed()) {
             realm.close();
         }
@@ -106,6 +124,7 @@ public class DepartmentSelectorActivity extends AppCompatActivity implements Ada
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        merlin.unbind();
     }
 
     public void setBranchGridView() {
@@ -131,6 +150,22 @@ public class DepartmentSelectorActivity extends AppCompatActivity implements Ada
                         departmentList.get(position).getBranchId(), -1);
             }
         });
+    }
+
+    @Override
+    public void onBind(NetworkStatus networkStatus) {
+        if (networkStatus.isAvailable()) NetworkConfig.setNetworkConnected(true);
+        else NetworkConfig.setNetworkConnected(false);
+    }
+
+    @Override
+    public void onConnect() {
+        NetworkConfig.setNetworkConnected(true);
+    }
+
+    @Override
+    public void onDisconnect() {
+        NetworkConfig.setNetworkConnected(false);
     }
 
     private void loadDepartments(boolean forceFetchFromServer) {
